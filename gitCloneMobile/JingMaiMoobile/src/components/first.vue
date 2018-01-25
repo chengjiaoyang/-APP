@@ -53,11 +53,15 @@ export default {
             selected:'tab1'
         }
     },
+    computed:{
+
+    },
     created(){
         Indicator.open({
             text: '加载中...',
             spinnerType: 'fading-circle'
         });
+
         var arrs = [{ad_type:3,campaign_id:111885590,campaign_name:"15日推广",campaign_status:2,campaign_visitor_cnt:48,clicks:57,cpc:1.08,cpm:0.2,ctr:0.02,depth_passenger_cnt:2,
     impressions:311991,is_order_or_click:"点击",is_today_or_15days:"当天",mobile_type:"全部",order_status_category:"全部订单",put_type:"商品",visit_page_cnt:50,visit_time_range:9.9},
     {ad_type:3,campaign_id:111885590,campaign_name:"15日推广",campaign_status:2,campaign_visitor_cnt:48,clicks:57,cost:61.75,cpc:1.08,cpm:0.2,ctr:0.02,depth_passenger_cnt:2,
@@ -79,36 +83,18 @@ export default {
         })
             .catch(function (error) {
               self.msg=arrs.reduce(function(pre,next){return pre+next.cost},0);
-              self.objects[0].data=arrs.reduce(function(pre,next){return pre+next.cost},0);
-              self.objects[1].data=arrs.reduce(function(pre,next){return pre+next.clicks},0);
-              self.objects[2].data=arrs.reduce(function(pre,next){return pre+next.impressions},0);
-              self.objects[3].data=arrs.reduce(function(pre,next){return pre+next.ctr},0);
-              self.objects[4].data=arrs.reduce(function(pre,next){return pre+next.cpm},0);
-              self.objects[5].data=arrs.reduce(function(pre,next){return pre+next.cpc},0);
-              self.objects[6].data=arrs.reduce(
-                  (pre,next)=>{
-                      if(next.total_order_sum){
-                          return pre+next.total_order_sum
-                      }else{
-                          return pre + 0
-                      }
-                  },0);
-              self.objects[7].data=arrs.reduce(
-                  (pre,next)=>{
-                      if(next.total_order_cnt){
-                          return pre+next.total_order_cnt
-                      }else{
-                          return pre + 0
-                      }
-                  },0);
-              self.objects[8].data=arrs.reduce(
-                  (pre,next)=>{
-                      if(next.total_order_roi){
-                          return pre+next.total_order_roi
-                      }else{
-                          return pre + 0
-                      }
-                  },0);
+
+              for(var i in ['cost','clicks','impressions','ctr','cpm','cpc','total_order_sum','total_order_cnt','total_order_roi']){
+                self.objects[i].data=arrs.reduce(function(pre,next){
+                  if(next[['cost','clicks','impressions','ctr','cpm','cpc','total_order_sum','total_order_cnt','total_order_roi'][i]]){
+                    return pre+next[['cost','clicks','impressions','ctr','cpm','cpc','total_order_sum','total_order_cnt','total_order_roi'][i]]
+                  }else{
+                    return pre+0
+                  }
+                },0);
+              }
+
+
                   Indicator.close();
         });
 
@@ -149,7 +135,7 @@ export default {
         height:50px;
         line-height: 50px;
         border-radius:8px;
-        border:1px solid #dedede;
+        border:1.1px solid #dedede;
         color:#fff;
     }
     .timenumber{
