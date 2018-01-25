@@ -9,7 +9,7 @@
             <div  v-for="item in items">
               <p class="campaign">{{item.campaign_name}}</p>
               <ul>
-                <li class="dots">{{item.cost}}</li>
+                <li class="dots">{{item.cost||0}}</li>
               </ul>
             </div>
         </swiper-slide>
@@ -20,7 +20,7 @@
              <div  v-for="item in items">
                <p class="campaign">&nbsp</p>
                <ul>
-                  <li class="dots">{{item.clicks}}</li>
+                  <li class="dots">{{item.clicks||0}}</li>
                </ul>
               </div>
         </swiper-slide>
@@ -31,7 +31,7 @@
             <div  v-for="item in items">
                <p class="campaign">&nbsp</p>
                <ul>
-                  <li class="dots">{{item.impressions}}</li>
+                  <li class="dots">{{item.impressions||0}}</li>
                </ul>
               </div>
         </swiper-slide>
@@ -42,7 +42,7 @@
             <div  v-for="item in items">
                <p class="campaign">&nbsp</p>
                <ul>
-                  <li class="dots">{{item.ctr}}</li>
+                  <li class="dots">{{item.ctr||0}}</li>
                </ul>
               </div>
         </swiper-slide>
@@ -53,7 +53,7 @@
             <div  v-for="item in items">
                <p class="campaign">&nbsp</p>
                <ul>
-                  <li class="dots">{{item.cpm}}</li>
+                  <li class="dots">{{item.cpm||0}}</li>
                </ul>
               </div>
         </swiper-slide>
@@ -64,7 +64,7 @@
               <div  v-for="item in items">
               <p class="campaign">&nbsp</p>
                <ul>
-                  <li class="dots">{{item.cpc}}</li>
+                  <li class="dots">{{item.cpc||0}}</li>
                </ul>
               </div>
           </swiper-slide>
@@ -75,7 +75,7 @@
               <div  v-for="item in items">
               <p class="campaign">&nbsp</p>
                <ul>
-                  <li class="dots">{{item.clicks}}</li>
+                  <li class="dots">{{item.clicks||0}}</li>
                </ul>
               </div>
           </swiper-slide>
@@ -86,7 +86,7 @@
                 <div  v-for="item in items">
                    <p class="campaign">&nbsp</p>
                <ul>
-                  <li class="dots">{{item.clicks}}</li>
+                  <li class="dots">{{item.clicks||0}}</li>
                </ul>
               </div>
           </swiper-slide>
@@ -97,7 +97,7 @@
                 <div  v-for="item in items">
                    <p class="campaign">&nbsp</p>
                <ul>
-                  <li class="dots">{{item.clicks}}</li>
+                  <li class="dots">{{item.clicks||0}}</li>
                </ul>
               </div>
           </swiper-slide>

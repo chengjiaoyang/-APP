@@ -37,23 +37,37 @@ export default {
     }
   },
   created(){
-    this.selected=sessionStorage.getItem('selected')||this.selected
+    this.selected=sessionStorage.getItem('selected')||this.selected;
+    this.selected=sessionStorage.getItem('content')||this.content
   },
   watch:{
 
-    'selected'(value){
+    '$route.path'(value){
+
+      value=value.slice(1)
+      console.log(value);
         switch(value){
-          case 'home':
+            case 'first':
+          console.log('213-----------------------------------------------')
             this.content = 'home';
+              this.selected = 'home';
+            sessionStorage.clear()
             sessionStorage.setItem("selected","home")
+            sessionStorage.setItem("content","home")
             break;
           case 'manage':
             this.content = 'manage';
-            sessionStorage.getItem('selected',"manage")
+              this.selected = 'manage';
+            sessionStorage.clear()
+            sessionStorage.setItem('selected',"manage")
+            sessionStorage.setItem("content","manage")
             break;
           case 'recharge':
             this.content = 'recharge';
-          sessionStorage.getItem('selected',"recharge")
+            this.selected = 'recharge';
+            sessionStorage.clear()
+          sessionStorage.setItem('selected',"recharge")
+          sessionStorage.setItem("content","recharge")
             break;
         }
       }

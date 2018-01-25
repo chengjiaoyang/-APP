@@ -6,7 +6,7 @@
             <span>{{msg}}</span>
             <p>账户余额（元）</p>
          </div> -->
-         <input class="money" type="text" v-model="monkeynum" placeholder="请输入充值金额" >
+         <input class="money" type="number" v-model="monkeynum" placeholder="请输入充值金额" >
       </nav>
       <div>
         <ul>
