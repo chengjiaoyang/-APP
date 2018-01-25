@@ -6,7 +6,7 @@
             <span>{{msg}}</span>
             <p>账户余额（元）</p>
          </div> -->
-         <input class="money" type="number" v-model="monkeynum" placeholder="请输入充值金额" >
+         <input class="money" type="number" v-model.lazy="monkeynum" placeholder="请输入充值金额" >
       </nav>
       <div>
         <ul>
@@ -17,11 +17,12 @@
         </ul>
       </div>
         <!-- <input class="button" type="button" value="确认充值"> -->
-        <a :href="href" class="button">确认充值</a>
+        <a :href="href" class="button"  >确认充值</a>
   </div>
 </template>
 
 <script>
+import { Toast } from 'mint-ui'
 import axios from 'axios'
 import qs from 'qs'
 export default {
@@ -46,11 +47,23 @@ export default {
     getrecharge(item,index){
         this.monkeynum=item.data;
         this.nowIndex=index;
-    }
+    },
+
   },
   computed:{
     href(){
-      return '/api/recharge?money='+this.monkeynum;
+      if(this.monkeynum&&this.monkeynum<200){
+       Toast('穷逼啊');
+         return  false
+
+      }
+      if (this.monkeynum==''){
+        return false
+      }
+      if(this.monkeynum>=200){
+              return '/api/recharge?money='+this.monkeynum;
+      }
+
     }
   },
    created(){
