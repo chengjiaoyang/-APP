@@ -1,0 +1,47 @@
+接口里数组的对象中每一项的和 
+self.msg=arrs.reduce(function(pre,next){return pre+next.cost},0);
+              self.objects[0].data=arrs.reduce(function(pre,next){return pre+next.cost},0);
+              self.objects[1].data=arrs.reduce(function(pre,next){return pre+next.clicks},0);
+              self.objects[2].data=arrs.reduce(function(pre,next){return pre+next.impressions},0);
+              self.objects[3].data=arrs.reduce(function(pre,next){return pre+next.ctr},0);
+              self.objects[4].data=arrs.reduce(function(pre,next){return pre+next.cpm},0);
+              self.objects[5].data=arrs.reduce(function(pre,next){return pre+next.cpc},0);
+              self.objects[6].data=arrs.reduce(
+                  (pre,next)=>{
+                      if(next.total_order_sum){
+                          return pre+next.total_order_sum
+                      }else{
+                          return pre + 0
+                      }
+                  },0);
+              self.objects[7].data=arrs.reduce(
+                  (pre,next)=>{
+                      if(next.total_order_cnt){
+                          return pre+next.total_order_cnt
+                      }else{
+                          return pre + 0
+                      }
+                  },0);
+              self.objects[8].data=arrs.reduce(
+                  (pre,next)=>{
+                      if(next.total_order_roi){
+                          return pre+next.total_order_roi
+                      }else{
+                          return pre + 0
+                      }
+                  },0);
+                  Indicator.close();
+                  
+                  优化一波 
+                      for(var i in ['cost','clicks','impressions','ctr','cpm','cpc','total_order_sum','total_order_cnt','total_order_roi']){
+                self.objects[i].data=arrs.reduce(function(pre,next){
+                  if(next[['cost','clicks','impressions','ctr','cpm','cpc','total_order_sum','total_order_cnt','total_order_roi'][i]]){
+                    return pre+next[['cost','clicks','impressions','ctr','cpm','cpc','total_order_sum','total_order_cnt','total_order_roi'][i]]
+                  }else{
+                    return pre+0
+                  }
+                },0);
+              }
+
+
+                  Indicator.close();
